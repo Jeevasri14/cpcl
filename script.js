@@ -1,36 +1,35 @@
-const url = 'cpclfactbook.pdf';
-let pdfDoc = null;
-let pageNum = 1;
-let pageRendering = false;
-let pageNumPending = null;
-const scale = 1.3;
-const canvas = document.getElementById('pdf-render');
-const ctx = canvas.getContext('2d');
 
-pdfjsLib.getDocument(url).promise.then(pdf => {
+
+// PDF Viewer
+const url = 'cpclfactbook.pdf';
+let pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 1.2,
+    canvas = document.getElementById('pdf-canvas'),
+    ctxPdf = canvas.getContext('2d');
+
+pdfjsLib.getDocument(url).promise.then(function(pdf) {
   pdfDoc = pdf;
-  document.getElementById('page-count').textContent = pdfDoc.numPages;
+  document.getElementById('page-count').textContent = pdf.numPages;
   renderPage(pageNum);
-}).catch(error => {
-  alert('Error loading PDF: ' + error.message);
 });
 
 function renderPage(num) {
   pageRendering = true;
-
-  pdfDoc.getPage(num).then(page => {
+  pdfDoc.getPage(num).then(function(page) {
     const viewport = page.getViewport({ scale });
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
     const renderContext = {
-      canvasContext: ctx,
+      canvasContext: ctxPdf,
       viewport: viewport
     };
 
     const renderTask = page.render(renderContext);
-
-    renderTask.promise.then(() => {
+    renderTask.promise.then(function () {
       pageRendering = false;
       document.getElementById('page-num').textContent = num;
       if (pageNumPending !== null) {
@@ -65,6 +64,7 @@ function goToPage(num) {
   if (num < 1 || num > pdfDoc.numPages) return;
   pageNum = num;
   queueRenderPage(pageNum);
+  document.getElementById("pdf-viewer").scrollIntoView({ behavior: "smooth" });
 }
 
 function toggleSidebar() {
