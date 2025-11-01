@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CPCL Factbook Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+
+  <!-- Background overlay -->
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <img src="cpcllogo.jpg" alt="CPCL Logo" class="logo" />
+      <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+    </div>
+    <a href="cpclfactbook.pdf" download class="download-btn" title="Download PDF">&#x2B07;</a>
+  </header>
+
+  <!-- Sidebar for Table of Contents -->
+  <aside id="sidebar">
+    <h2>Table of Contents</h2>
+    <ul>
+      <li onclick="goToPage(6)">General Information.</li>
+      <li onclick="goToPage(8)">Vision and Mission.</li>
+      <li onclick="goToPage(8)">Highlights - 2023-24.</li>
+      <li onclick="goToPage(9)">Project.</li>
+      <li onclick="goToPage(12)">Chairman & Managing Directors.</li>
+      <li onclick="goToPage(15)">Important Events.</li>
+      <li onclick="goToPage(20)">Process Design Data & Key Highlights.</li>
+      <li onclick="goToPage(20)">CPCL - Special Features.</li>
+      <li onclick="goToPage(28)">Process Highlights.</li>
+      <li onclick="goToPage(32)">New Crudes Processing.</li>
+      <li onclick="goToPage(32)">Process Improvements.</li>
+      <li onclick="goToPage(35)">Industry Highlights.</li>
+      <li onclick="goToPage(36)">Map of Refineries in India.</li>
+      <li onclick="goToPage(54)">Production Performance.</li>
+      <li onclick="goToPage(75)">Utilities Data – Manali Refinery.</li>
+      <li onclick="goToPage(83)">Direct Marketing.</li>
+      <li onclick="goToPage(85)">Safety.</li>
+      <li onclick="goToPage(90)">Research and Development.</li>
+      <li onclick="goToPage(94)">Financial Performance.</li>
+      <li onclick="goToPage(112)">MoU Performance & Rating.</li>
+      <li onclick="goToPage(113)">Human Resources & CSR.</li>
+      <li onclick="goToPage(120)">Secretarial.</li>
+      <li onclick="goToPage(123)">Annexure – I.</li>
+      <li onclick="goToPage(170)">Annexure – II.</li>
+      <li onclick="goToPage(180)">Annexure – III.</li>
+      <li onclick="goToPage(195)">Annexure – IV.</li>
+      <li onclick="goToPage(202)">Publications and Presentations.</li>
+    </ul>
+  </aside>
+
+  <!-- Main PDF display area -->
+  <main>
+    <canvas id="pdf-render"></canvas>
+    <div class="controls">
+      <button onclick="prevPage()">←</button>
+      <span>Page <span id="page-num">1</span> / <span id="page-count">--</span></span>
+      <button onclick="nextPage()">→</button>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
