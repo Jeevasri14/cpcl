@@ -1,0 +1,123 @@
+/* Full-page background */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #000;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Semi-transparent white overlay to make PDF readable */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.4); /* lower = more background visible */
+}
+
+
+/* Header with logo and menu */
+header {
+  background: #003366;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menu-btn {
+  background: none;
+  font-size: 26px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.download-btn {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  top: 60px;
+  left: -260px;
+  width: 250px;
+  height: calc(100% - 60px);
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 998;
+}
+
+#sidebar.show {
+  left: 0;
+}
+
+#sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#sidebar ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+#sidebar ul li {
+  margin: 8px 0;
+  cursor: pointer;
+  color: #003366;
+  font-weight: bold;
+}
+
+/* Main content */
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+canvas {
+  max-width: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: white;
+  border-radius: 5px;
+}
+
+/* Controls */
+.controls {
+  margin-top: 15px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
